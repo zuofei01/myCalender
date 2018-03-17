@@ -18,6 +18,53 @@ public class MyTest {
     private  MyMap myMap = MyMap.getSingleton();
 
     @Test
+    public void getData(){
+        Iterator iter = myMap.getTreeMap().entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Object key = entry.getKey();
+            System.out.println("key is " + key);
+        }
+    }
+
+    @Test
+    public void testSetInterval(){
+        long start = 50;
+        long end = 4670309599l;
+        Response response = myCalender.addInterval(start, end);
+        System.out.println("response is "+ response);
+//        long start1 = 150;
+//        long end1 = 200;
+//        Response response1 = myCalender.addInterval(start1, end1);
+//        System.out.println("response is "+ response1);
+    }
+
+    @Test
+    public void testJudgeAndGetInterval(){
+        long start = 100;
+        long end = 210;
+        Response response = myCalender.judgeInterval(start, end);
+        System.out.println("response is "+ response);
+        Response response1 = myCalender.getInterval(start, end);
+        System.out.println("response is "+ response1);
+    }
+
+    @Test
+    public void testRemoveInterval(){
+        long start = 100;
+        long end = 210;
+        Response response = myCalender.removeInterval(start, end);
+        System.out.println("response is "+ response);
+
+//        long start1 = 50;
+//        long end1 = 100;
+//        Response response1 = myCalender.addInterval(start1, end1);
+//        long start2 = 150;
+//        long end2 = 200;
+//        Response response2 = myCalender.addInterval(start2, end2);
+    }
+
+    @Test
     public void testPut() {
 
         myMap.put(new MySchedule(5, 10));
@@ -68,52 +115,7 @@ public class MyTest {
 
     }
 
-    @Test
-    public void getData(){
-        Iterator iter = myMap.getTreeMap().entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Object key = entry.getKey();
-            System.out.println("key is " + key);
-        }
-    }
 
-    @Test
-    public void testSetInterval(){
-        long start = 500;
-        long end = 4670309599l;
-        Response response = myCalender.addInterval(start, end);
-        System.out.println("response is "+ response);
-        long start1 = 150;
-        long end1 = 200;
-        Response response1 = myCalender.addInterval(start1, end1);
-        System.out.println("response is "+ response1);
-    }
-
-    @Test
-    public void testJudgeAndGetInterval(){
-        long start = 100;
-        long end = 210;
-        Response response = myCalender.judgeInterval(start, end);
-        System.out.println("response is "+ response);
-        Response response1 = myCalender.getInterval(start, end);
-        System.out.println("response is "+ response1);
-    }
-
-    @Test
-    public void testRemoveInterval(){
-        long start = 100;
-        long end = 210;
-        Response response = myCalender.removeInterval(start, end);
-        System.out.println("response is "+ response);
-
-//        long start1 = 50;
-//        long end1 = 100;
-//        Response response1 = myCalender.addInterval(start1, end1);
-//        long start2 = 150;
-//        long end2 = 200;
-//        Response response2 = myCalender.addInterval(start2, end2);
-    }
 
 
 
