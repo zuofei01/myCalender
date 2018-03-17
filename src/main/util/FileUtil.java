@@ -43,12 +43,12 @@ public class FileUtil {
      * @param path
      * @return
      */
-    public static Map readObject(String path) {
-        Map map = new TreeMap();
+    public static TreeMap readObject(String path) {
+        TreeMap map = new TreeMap();
         try {
             File f = new File(path);
             if (!f.exists()) {
-                f.createNewFile();
+                writeObject(map,path);
                 return map;
             }
             FileInputStream in = new FileInputStream(path);

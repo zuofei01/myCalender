@@ -21,7 +21,7 @@ public class MyCalender {
      * @param endTime
      * @return
      */
-    public Response setInterval(long startTime, long endTime) {
+    public Response addInterval(long startTime, long endTime) {
         Response response = new Response();
         response.setFalse();
         try {
@@ -49,7 +49,7 @@ public class MyCalender {
      * @param endTime
      * @return
      */
-    public Response judge(long startTime, long endTime) {
+    public Response judgeInterval(long startTime, long endTime) {
         Response response = new Response();
         response.setFalse();
         try {
@@ -76,7 +76,7 @@ public class MyCalender {
      * @param endTime
      * @return
      */
-    public Response get(long startTime, long endTime) {
+    public Response getInterval(long startTime, long endTime) {
         Response response = new Response();
         response.setFalse();
         try {
@@ -103,7 +103,7 @@ public class MyCalender {
      * @param endTime
      * @return
      */
-    public Response remove(long startTime, long endTime) {
+    public Response removeInterval(long startTime, long endTime) {
         Response response = new Response();
         response.setFalse();
         try {
@@ -124,6 +124,8 @@ public class MyCalender {
     }
 
     public boolean check(long startTime, long endTime) {
-        return (startTime <= 0 || endTime <= 0 || startTime >= endTime) ? false : true;
+        //2118年1月1日，本日历只支持到2118年
+        long max = 4670409600l;
+        return (startTime <= 0 || endTime <= 0 || startTime >= endTime || endTime >= max) ? false : true;
     }
 }

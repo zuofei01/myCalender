@@ -10,6 +10,4 @@ public class MyConstant {
     public static final String SYSTEM_ERR = "system error";
 
     public static final String INSERT_SUCCESS = "insert success";
-
-
 }

@@ -43,7 +43,7 @@ public class MyMap {
      */
     public void put(MySchedule mySchedule) {
 
-        if (!checkSchedule(mySchedule)) {
+        if (!MySchedule.checkSchedule(mySchedule)) {
             throw new MyException(MyConstant.DATE_ILLEGAL);
         }
         w.lock();
@@ -52,7 +52,6 @@ public class MyMap {
                 throw new MyException("interval conflict");
             }
             treeMap.put(mySchedule, mySchedule);
-            //todo 如果没写入进去怎么办?
             FileUtil.writeObject(treeMap, path);
             return;
         } finally {
@@ -67,7 +66,7 @@ public class MyMap {
     public List<MySchedule> get(MySchedule mySchedule) {
         List<MySchedule> res = new ArrayList<>();
         try {
-            if (!checkSchedule(mySchedule)) {
+            if (!MySchedule.checkSchedule(mySchedule)) {
                 throw new MyException(MyConstant.DATE_ILLEGAL);
             }
             //加共享锁
@@ -104,7 +103,7 @@ public class MyMap {
      * @return
      */
     public boolean judge(MySchedule mySchedule) {
-        if (!checkSchedule(mySchedule)) {
+        if (!MySchedule.checkSchedule(mySchedule)) {
             throw new MyException(MyConstant.DATE_ILLEGAL);
         }
         r.lock();
@@ -123,7 +122,7 @@ public class MyMap {
      */
     public List<MySchedule> remove(MySchedule mySchedule) {
         List<MySchedule> res = new ArrayList<>();
-        if (!checkSchedule(mySchedule)) {
+        if (!MySchedule.checkSchedule(mySchedule)) {
             throw new MyException(MyConstant.DATE_ILLEGAL);
         }
         w.lock();
@@ -140,18 +139,7 @@ public class MyMap {
         }
     }
 
-    /**
-     * 校验区间值的合法性，结束时间要在开始时间之后
-     *
-     * @param ms
-     * @return
-     */
-    public static boolean checkSchedule(MySchedule ms) {
-        if (ms == null || ms.getStartTime() >= ms.getEndTime()) {
-            return false;
-        }
-        return true;
-    }
+
 
     public TreeMap<MySchedule, MySchedule> getTreeMap() {
         return treeMap;
